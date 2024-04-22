@@ -8,7 +8,7 @@
 :root{
     --bg-color: ##ffffffb9;
     --box-shadow-color: rgba(0, 0, 0, 0.4);
-    --box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+    --box-shadow: 0px 0px 4px;
     --font-main-color: rgba(0, 0, 0, 0.8);
     --font-secondary-color: rgba(0, 0, 0, 0.5);
 }
@@ -18,7 +18,7 @@ body,
     display: flex;
 }
 body{
-    background-color: #ffffffb9;
+    background-color: var(--bg-color);
     /* color: white; */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
 
@@ -40,8 +40,7 @@ body{
 }
 
 .form{
-    border-radius: 10px;
-    background-color: white;
+    background-color: var(--bg-color);
     padding: 20px 0;
 }
 .h1-title{
@@ -90,7 +89,8 @@ h3{
 }
 .form,
 .list-container{
-    box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow) var(--box-shadow-color);
+    border-radius: 0px 10px 0px 10px;
 }
 .list-container{
     display: flex;
@@ -98,9 +98,8 @@ h3{
     justify-content: center;
     min-height: 150px;
     list-style: none;
-    background-color: white;
+    background-color: var(--bg-color);
     padding: 15px;
-    border-radius: 0px 10px 0px 10px;
 }
 .li-task{
     display: flex;
@@ -110,7 +109,7 @@ h3{
     overflow: hidden;
 
     margin-bottom: 10px;
-    border-bottom: 1px white outset;
+    border-bottom: 1px var(--font-secondary-color) outset;
     transform: translateX(100%) scale(0);
     transition: all 300ms ease;
     /* outline: 1px red solid; */
@@ -134,7 +133,7 @@ h3{
     width: 90%;
     font-size: 1.2rem;
     text-align: center;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--font-secondary-color);
     padding-bottom: 10px;
     margin: 0 auto;
     cursor: none;
@@ -145,7 +144,7 @@ h3{
     display: block;
     width: 100%;
     height: 1px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--font-secondary-color);
     bottom: 0;
     left: 0;
 }
