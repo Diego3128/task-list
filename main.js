@@ -31,10 +31,19 @@ function checkTasks(){
 }
 // cretae new li task  function
 function addNewTask(taskName){
+    drawTask(taskName);
+    //store task in local storage
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(taskName.trim());
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    checkTasks();
+}
+function drawTask(taskName){
     const liTask = document.createElement('li');
     liTask.classList.add('li-task');
     liTask.innerHTML = ` 
-    <p class="li-task-name">${taskName}</p>
+    <p class="li-task-name">${taskName.trim()}</p>
     <div class="li-button-container">
     <button class="edit-button"></button>
     <button class="delete-button"></button>
@@ -44,8 +53,21 @@ function addNewTask(taskName){
     setTimeout(()=> {
         liTask.classList.add('li-task-show')
     }, 0);
+}
 
-    checkTasks();
+function checkLocalTasks(){
+    // check for tasks in localStorage
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    if(tasks.length > 0 ){
+        if(document.getElementById('li-warning')){
+        liWarning.remove();
+        // if there is a liWarning element it'll be removed
+    }
+    tasks.forEach((task)=>{
+        drawTask(task);
+    })
+    }
+
 }
 //////////////EVENTS ///////////////
 
@@ -57,7 +79,7 @@ mainForm.addEventListener('submit', function(e){
 // Event bubbling to catch the event in the form element instead of using one for the button itself
 mainForm.addEventListener('click', function(e){
     if(e.target === mainButton){
-        if(mainInput.value){
+        if(mainInput.value.length > 2){
             addNewTask(mainInput.value);
         }
     }
@@ -78,5 +100,6 @@ ulTaskContainer.addEventListener('click', function(e){
 });
 
 checkTasks();
+checkLocalTasks();
 });//DOMContentLoaded
 
